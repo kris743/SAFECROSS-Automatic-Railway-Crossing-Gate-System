@@ -1,0 +1,405 @@
+@import "tailwindcss";
+
+/* ===== SAFECROSS CUSTOM THEME ===== */
+
+@theme {
+  /* Primary neon colors */
+  --color-neon-green: #39ff14;
+  --color-neon-blue: #00f0ff;
+  --color-neon-red: #ff073a;
+  --color-neon-yellow: #ffd300;
+  --color-neon-purple: #b026ff;
+  --color-neon-orange: #ff6600;
+
+  /* Dark theme backgrounds */
+  --color-dark-900: #050510;
+  --color-dark-800: #0a0a1a;
+  --color-dark-700: #10102a;
+  --color-dark-600: #16163a;
+  --color-dark-500: #1e1e4a;
+
+  /* Glass colors */
+  --color-glass: rgba(255, 255, 255, 0.05);
+  --color-glass-border: rgba(255, 255, 255, 0.08);
+
+  /* Fonts */
+  --font-sans: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* ===== ROOT VARIABLES ===== */
+:root {
+  --glow-green: 0 0 20px rgba(57, 255, 20, 0.3), 0 0 40px rgba(57, 255, 20, 0.1);
+  --glow-blue: 0 0 20px rgba(0, 240, 255, 0.3), 0 0 40px rgba(0, 240, 255, 0.1);
+  --glow-red: 0 0 20px rgba(255, 7, 58, 0.3), 0 0 40px rgba(255, 7, 58, 0.1);
+  --glow-yellow: 0 0 20px rgba(255, 211, 0, 0.3), 0 0 40px rgba(255, 211, 0, 0.1);
+  --glow-purple: 0 0 20px rgba(176, 38, 255, 0.3), 0 0 40px rgba(176, 38, 255, 0.1);
+}
+
+/* ===== BASE STYLES ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-dark-900);
+  color: #e0e0e0;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-dark-800);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--color-neon-green), var(--color-neon-blue));
+  border-radius: 4px;
+}
+
+/* ===== GLASSMORPHISM ===== */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+}
+
+.glass-strong {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+}
+
+/* ===== NEON GLOW EFFECTS ===== */
+.glow-green { box-shadow: var(--glow-green); }
+.glow-blue { box-shadow: var(--glow-blue); }
+.glow-red { box-shadow: var(--glow-red); }
+.glow-yellow { box-shadow: var(--glow-yellow); }
+.glow-purple { box-shadow: var(--glow-purple); }
+
+.glow-green-subtle {
+  box-shadow: 0 0 8px rgba(57, 255, 20, 0.15);
+}
+
+.text-glow-green {
+  text-shadow: 0 0 10px rgba(57, 255, 20, 0.5), 0 0 20px rgba(57, 255, 20, 0.3);
+}
+
+.text-glow-blue {
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.5), 0 0 20px rgba(0, 240, 255, 0.3);
+}
+
+.text-glow-red {
+  text-shadow: 0 0 10px rgba(255, 7, 58, 0.5), 0 0 20px rgba(255, 7, 58, 0.3);
+}
+
+/* ===== ANIMATED BACKGROUNDS ===== */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(57, 255, 20, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(57, 255, 20, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+.bg-gradient-radial {
+  background: radial-gradient(ellipse at 50% 0%, rgba(0, 240, 255, 0.08) 0%, transparent 60%);
+}
+
+/* ===== KEYFRAME ANIMATIONS ===== */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+@keyframes train-move {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+@keyframes gate-close {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(-90deg); }
+}
+
+@keyframes gate-open {
+  0% { transform: rotate(-90deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes blink-red {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; box-shadow: 0 0 30px rgba(255, 7, 58, 0.8); }
+}
+
+@keyframes scan-line {
+  0% { top: 0; }
+  100% { top: 100%; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes counter-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes border-flow {
+  0% { border-color: rgba(57, 255, 20, 0.3); }
+  33% { border-color: rgba(0, 240, 255, 0.3); }
+  66% { border-color: rgba(176, 38, 255, 0.3); }
+  100% { border-color: rgba(57, 255, 20, 0.3); }
+}
+
+@keyframes slide-up {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 5px rgba(57, 255, 20, 0.2); }
+  50% { box-shadow: 0 0 25px rgba(57, 255, 20, 0.4), 0 0 50px rgba(57, 255, 20, 0.1); }
+}
+
+@keyframes rotate-slow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes text-shimmer {
+  0% { background-position: -100% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Animation Classes */
+.animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+.animate-train-move { animation: train-move 8s linear infinite; }
+.animate-blink-red { animation: blink-red 1s ease-in-out infinite; }
+.animate-float { animation: float 3s ease-in-out infinite; }
+.animate-scan-line { animation: scan-line 3s linear infinite; }
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 3s linear infinite;
+}
+.animate-border-flow { animation: border-flow 4s ease-in-out infinite; }
+.animate-slide-up { animation: slide-up 0.6s ease-out forwards; }
+.animate-fade-in { animation: fade-in 0.5s ease-out forwards; }
+.animate-glow-pulse { animation: glow-pulse 2s ease-in-out infinite; }
+.animate-rotate-slow { animation: rotate-slow 20s linear infinite; }
+
+/* Staggered slide-up for children */
+.stagger-children > *:nth-child(1) { animation-delay: 0ms; }
+.stagger-children > *:nth-child(2) { animation-delay: 80ms; }
+.stagger-children > *:nth-child(3) { animation-delay: 160ms; }
+.stagger-children > *:nth-child(4) { animation-delay: 240ms; }
+.stagger-children > *:nth-child(5) { animation-delay: 320ms; }
+.stagger-children > *:nth-child(6) { animation-delay: 400ms; }
+
+/* ===== NAV LINK HOVER EFFECT ===== */
+.nav-link-hover {
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.nav-link-hover::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--color-neon-green);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+.nav-link-hover:hover::after {
+  width: 70%;
+  box-shadow: 0 0 8px rgba(57, 255, 20, 0.5);
+}
+
+/* Login button glow animation */
+.login-btn-glow {
+  position: relative;
+  transition: all 0.3s ease;
+}
+.login-btn-glow:hover {
+  box-shadow: 0 0 20px rgba(57, 255, 20, 0.25), 0 0 40px rgba(57, 255, 20, 0.1);
+}
+
+/* ===== GLASS CARD HOVER ===== */
+.glass-card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.glass-card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 20px rgba(57, 255, 20, 0.05);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+/* ===== NEON BUTTONS ===== */
+.btn-neon {
+  position: relative;
+  padding: 12px 32px;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  border: 2px solid;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  background: transparent;
+}
+
+.btn-neon-green {
+  color: var(--color-neon-green);
+  border-color: var(--color-neon-green);
+}
+
+.btn-neon-green:hover {
+  background: rgba(57, 255, 20, 0.1);
+  box-shadow: 0 0 20px rgba(57, 255, 20, 0.3), inset 0 0 20px rgba(57, 255, 20, 0.1);
+  transform: translateY(-2px);
+}
+
+.btn-neon-blue {
+  color: var(--color-neon-blue);
+  border-color: var(--color-neon-blue);
+}
+
+.btn-neon-blue:hover {
+  background: rgba(0, 240, 255, 0.1);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.3), inset 0 0 20px rgba(0, 240, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.btn-neon-red {
+  color: var(--color-neon-red);
+  border-color: var(--color-neon-red);
+}
+
+.btn-neon-red:hover {
+  background: rgba(255, 7, 58, 0.1);
+  box-shadow: 0 0 20px rgba(255, 7, 58, 0.3), inset 0 0 20px rgba(255, 7, 58, 0.1);
+  transform: translateY(-2px);
+}
+
+.btn-filled-green {
+  padding: 14px 36px;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: linear-gradient(135deg, rgba(57, 255, 20, 0.2), rgba(0, 240, 255, 0.2));
+  color: var(--color-neon-green);
+  border: 1px solid rgba(57, 255, 20, 0.3);
+}
+
+.btn-filled-green:hover {
+  background: linear-gradient(135deg, rgba(57, 255, 20, 0.3), rgba(0, 240, 255, 0.3));
+  box-shadow: 0 0 30px rgba(57, 255, 20, 0.3);
+  transform: translateY(-2px);
+}
+
+/* ===== STATUS INDICATORS ===== */
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.status-active {
+  background: var(--color-neon-green);
+  box-shadow: 0 0 10px var(--color-neon-green);
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.status-warning {
+  background: var(--color-neon-yellow);
+  box-shadow: 0 0 10px var(--color-neon-yellow);
+  animation: pulse-glow 1.5s ease-in-out infinite;
+}
+
+.status-danger {
+  background: var(--color-neon-red);
+  box-shadow: 0 0 10px var(--color-neon-red);
+  animation: blink-red 1s ease-in-out infinite;
+}
+
+/* ===== GAUGE ===== */
+.gauge-ring {
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1s ease-in-out;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .glass, .glass-strong {
+    border-radius: 12px;
+  }
+
+  .btn-neon, .btn-filled-green {
+    padding: 10px 24px;
+    font-size: 0.9rem;
+  }
+}
+
+/* ===== LIGHT MODE OVERRIDES ===== */
+.light-mode {
+  --color-dark-900: #f0f2f5;
+  --color-dark-800: #e4e6ea;
+  --color-dark-700: #d5d8de;
+  --color-dark-600: #c0c4cc;
+}
+
+.light-mode body,
+.light-mode {
+  background: #f0f2f5;
+  color: #1a1a2e;
+}
+
+.light-mode .glass {
+  background: rgba(255, 255, 255, 0.7);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.light-mode .glass-strong {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(0, 0, 0, 0.12);
+}
